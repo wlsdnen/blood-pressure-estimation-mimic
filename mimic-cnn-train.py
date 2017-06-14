@@ -21,7 +21,7 @@ x_data = dh.MergeData(x1=x_data1, x2=x_data2)
 print ('x_data shape :', x_data.shape)
 
 sess = tf.Session()
-cnn = SignalCNN(signal_length=70, num_outputs=1, filter_sizes=[2], num_filters=64)
+cnn = SignalCNN(signal_length=70, num_outputs=1, filter_sizes=[2, 4], num_filters=64)
 
 # Define training procedure
 optimizer = tf.train.AdamOptimizer(0.001)
