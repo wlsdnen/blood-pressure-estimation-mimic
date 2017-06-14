@@ -4,14 +4,11 @@ from mimic_cnn_class import SignalCNN
 import data_helper as dh
 import matplotlib.pyplot as plt
 
+tf.set_random_seed(777)  # reproducibility
+
 # Load data
 data = np.loadtxt ('./data/mimic-all.csv', delimiter=',', dtype=float)
-# y_data = np.loadtxt ('data/mimic-part1-BP-001.txt', dtype=float, delimiter=',')
-# y_data = y_data[:, [1]]
 x_data = []
-# x_data1 = np.loadtxt ('data/mimic-part1-ECG-001.txt', dtype=float, delimiter=',')
-# x_data2 = np.loadtxt ('data/mimic-part1-PPG-001.txt', dtype=float, delimiter=',')
-
 y_data = data[:, [-1]]
 x_data1 = data[:, :70]
 x_data2 = data[:, 70:-2]
@@ -30,8 +27,8 @@ train_op = optimizer.minimize(cnn.cost)
 # Initialize all variables
 sess.run(tf.global_variables_initializer())
 
-batch_size = 1024
-num_epochs = 300
+batch_size = 8192
+num_epochs = 512
 
 train_size  = int(len(y_data) * 0.7)
 test_size   = len(y_data) - train_size
